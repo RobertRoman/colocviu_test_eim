@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import ro.pub.cs.systems.eim.colocviu_test_eim.Constants;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -58,6 +59,22 @@ public class MainActivity extends AppCompatActivity {
 
         pressMeButton.setOnClickListener(buttonClickListener);
         pressMeTooButton.setOnClickListener(buttonClickListener);
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(Constants.LEFT_COUNT)) {
+                leftEditText.setText(savedInstanceState.getString(Constants.LEFT_COUNT));
+            } else {
+                leftEditText.setText(String.valueOf(0));
+            }
+            if (savedInstanceState.containsKey(Constants.RIGHT_COUNT)) {
+                rightEditText.setText(savedInstanceState.getString(Constants.RIGHT_COUNT));
+            } else {
+                rightEditText.setText(String.valueOf(0));
+            }
+        } else {
+            leftEditText.setText(String.valueOf(0));
+            rightEditText.setText(String.valueOf(0));
+        }
     }
 
     @Override
@@ -80,5 +97,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(Constants.LEFT_COUNT, leftEditText.getText().toString());
+        savedInstanceState.putString(Constants.RIGHT_COUNT, rightEditText.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState.containsKey(Constants.LEFT_COUNT)) {
+            leftEditText.setText(savedInstanceState.getString(Constants.LEFT_COUNT));
+        } else {
+            leftEditText.setText(String.valueOf(0));
+        }
+        if (savedInstanceState.containsKey(Constants.RIGHT_COUNT)) {
+            rightEditText.setText(savedInstanceState.getString(Constants.RIGHT_COUNT));
+        } else {
+            rightEditText.setText(String.valueOf(0));
+        }
     }
 }
