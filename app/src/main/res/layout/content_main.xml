@@ -19,33 +19,35 @@
         android:id="@+id/left_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/navigate_to_secondary_activity_button"
+        android:layout_alignParentLeft="true"
         android:ems="7"
         android:enabled="false"
         android:gravity="center"
         android:inputType="number"
         android:saveEnabled="false"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/navigate_to_secondary_activity_button"/>
+        tools:text="0" />
 
 
     <EditText
         android:id="@+id/right_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:saveEnabled="false"
-        android:enabled="false"
-        android:inputType="number"
-        android:ems="7"
-        android:layout_alignParentRight="true"
         android:layout_below="@id/navigate_to_secondary_activity_button"
-        android:gravity="center" />
+        android:layout_alignParentRight="true"
+        android:ems="7"
+        android:enabled="false"
+        android:gravity="center"
+        android:inputType="number"
+        android:saveEnabled="false"
+        tools:text="0" />
 
     <Button
         android:id="@+id/left_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/left_edit_text"
         android:layout_below="@id/left_edit_text"
+        android:layout_alignLeft="@id/left_edit_text"
         android:layout_alignRight="@id/left_edit_text"
         android:text="@string/press_me" />
 
@@ -53,8 +55,10 @@
         android:id="@+id/right_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/right_edit_text"
         android:layout_alignLeft="@id/right_edit_text"
         android:layout_alignRight="@id/right_edit_text"
-        android:layout_below="@id/right_edit_text"
-        android:text="@string/press_me_too" />
+        android:text="@string/press_me_too"
+        tools:text="@string/press_me_too" />
+
 </RelativeLayout>

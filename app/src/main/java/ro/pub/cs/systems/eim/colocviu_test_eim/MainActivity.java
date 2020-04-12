@@ -20,22 +20,44 @@ public class MainActivity extends AppCompatActivity {
     private EditText rightEditText;
     private Button pressMeButton, pressMeTooButton;
 
+    private ButtonClickListener buttonClickListener = new ButtonClickListener();
+    private class ButtonClickListener implements Button.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            int leftNumberOfClicks = Integer.parseInt(leftEditText.getText().toString());
+            int rightNumberOfClicks = Integer.parseInt(rightEditText.getText().toString());
+
+            switch(view.getId()) {
+                case R.id.left_button:
+                    leftNumberOfClicks++;
+                    leftEditText.setText(String.valueOf(leftNumberOfClicks));
+                    break;
+                case R.id.right_button:
+                    rightNumberOfClicks++;
+                    rightEditText.setText(String.valueOf(rightNumberOfClicks));
+                    break;
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-
+        setSupportActionBar(toolbar);
 
         leftEditText = (EditText)findViewById(R.id.left_edit_text);
         rightEditText = (EditText)findViewById(R.id.right_edit_text);
 
+        leftEditText.setText(String.valueOf(0));
+        rightEditText.setText(String.valueOf(0));
+
         pressMeButton = (Button)findViewById(R.id.left_button);
         pressMeTooButton = (Button)findViewById(R.id.right_button);
 
-        leftEditText.setText(String.valueOf(0));
-        rightEditText.setText(String.valueOf(0));
+        pressMeButton.setOnClickListener(buttonClickListener);
+        pressMeTooButton.setOnClickListener(buttonClickListener);
     }
 
     @Override
